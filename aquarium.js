@@ -51,10 +51,7 @@ export class Aquarium {
     curve.curveType = 'centripetal';
     curve.closed = true;
 
-    const i        = Common.random(1, 48)
-    //const fileName = `img/fish_${i}.png`
-    //const fileName = `img/${i}.png`
-    const fileName = `img/${1}.png`
+    const fileName = `img/santa/${(idx + 1) % 7}.png`
     const material = this.plateMaterial(fileName)
 
     const sizeList = [
@@ -62,8 +59,8 @@ export class Aquarium {
       //0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6,
       //0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6,
       //1.0, 
-      3.0,
-      //5.0,
+      //3.0,
+      8.0,
     ]
     const s = Common.pickup(sizeList)
     const w = s
@@ -196,7 +193,7 @@ export class Aquarium {
 
     const da     = 2 * Math.PI / initialPoints.length
     const radius = Common.randomReal(20, 25)
-    const h = 20
+    const h = 50
     const offY   = Common.randomReal(h * 0.5, h)
 
     const sa  = Common.random(20, 25)
@@ -212,8 +209,8 @@ export class Aquarium {
       let z = Math.sin(a) * radius
       let y = offY
 
-      x += Math.cos(a * sa) * srx
-      z += Math.sin(a * sa) * srz
+      //x += Math.cos(a * sa) * srx
+      //z += Math.sin(a * sa) * srz
       y += Math.sin(a * say0) * sry0
 
       initialPoints[i] = new THREE.Vector3(x, y, z)

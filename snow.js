@@ -14,7 +14,7 @@ export class Snow {
     this.rangeMaxX = rangeMax
     //this.rangeMinY = rangeMin/2
     this.rangeMinY = 0
-    this.rangeMaxY = rangeMax/2
+    this.rangeMaxY = rangeMax
     this.rangeMinZ = rangeMin
     this.rangeMaxZ = rangeMax
 
@@ -56,7 +56,7 @@ export class Snow {
 
     const material = new THREE.PointsMaterial({
       color: 0xffffff, 
-      size: 1, 
+      size: 0.5, 
       map: texture, 
       transparent: true, 
       vertexColors: true,

@@ -15,7 +15,7 @@ function randomRange(min, max) {
 
 const container = document.body
 
-let renderer, scene, camera, stats
+let renderer, scene, camera, controls, stats
 
 let mouseX = 0
 let mouseY = 0
@@ -50,7 +50,7 @@ function init() {
   const axesHelper = new THREE.AxesHelper( 5 )
   scene.add( axesHelper )
 
-  forest = new Forest(20)
+  forest = new Forest(500)
   forest.eachTree((t) => {
     scene.add( t.mesh )
   })
@@ -58,7 +58,7 @@ function init() {
   snow= new Snow(8000, -70, 70)
   scene.add( snow.flakes )
 
-  aquarium = new Aquarium(5)
+  aquarium = new Aquarium(6)
   aquarium.eachFish( f => scene.add(f) )
 
 	container.appendChild( renderer.domElement );
@@ -71,7 +71,10 @@ function init() {
   stats = new Stats();
   document.body.appendChild( stats.dom );
 
-  const controls = new OrbitControls( camera, renderer.domElement );
+  controls = new OrbitControls( camera, renderer.domElement );
+  controls.autoRotate = true
+  controls.autoRotateSpeed = 0.5
+
   //controls.target.set( 0, 10, 0 );
   controls.update();
 }
@@ -127,16 +130,21 @@ function render() {
   if (deltaT  === void 0) {
     console.log(now, lastUpdate)
   }
-  forest.update(deltaT)
-  lastUpdate = now
+  forest.update(deltaT, camera)
+
+
 
 
   snow.update(deltaT)
 
   aquarium.update()
 
+  controls.update();
+
 	renderer.render(scene, camera)		
   stats.update()
+
+  lastUpdate = now
 }
 
 //looks for key presses and logs them
@@ -147,6 +155,14 @@ document.body.addEventListener("keydown", function(e) {
     case e.key == 'p':
      break
 
+    case e.key == 's':
+      controls.autoRotateSpeed -= 0.05
+      break
+
+    case e.key == 'S':
+      controls.autoRotateSpeed += 0.05
+
+      break
     default:
       break
   }

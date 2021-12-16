@@ -63,6 +63,12 @@ app.whenReady().then(() => {
     // 2x 1920x1080 
     win.setSize(3840, 1080)
   })
+
+  globalShortcut.register('Ctrl+H', function() {
+    // 2x 1920x1080 
+    win.setSize(1920, 1080)
+  })
+
 })
 
 app.on('before-quit', function (e) {
