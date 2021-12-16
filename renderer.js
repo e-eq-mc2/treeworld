@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { Snow }  from  './snow.js'
 import { Forest }  from  './forest.js'
+import { Aquarium }  from  './aquarium.js'
 const Common = require("./lib/common.js")
 
 function randomRange(min, max) {
@@ -19,7 +20,7 @@ let renderer, scene, camera, stats
 let mouseX = 0
 let mouseY = 0
 
-let forest, snow
+let forest, snow, aquarium
 
 init()
 let lastUpdate = performance.now()
@@ -54,8 +55,11 @@ function init() {
     scene.add( t.mesh )
   })
 
-  snow= new Snow(5000, -80, 80)
+  snow= new Snow(8000, -70, 70)
   scene.add( snow.flakes )
+
+  aquarium = new Aquarium(5)
+  aquarium.eachFish( f => scene.add(f) )
 
 	container.appendChild( renderer.domElement );
 
@@ -65,7 +69,7 @@ function init() {
   window.addEventListener( 'resize', onWindowResize )
 
   stats = new Stats();
-  //document.body.appendChild( stats.dom );
+  document.body.appendChild( stats.dom );
 
   const controls = new OrbitControls( camera, renderer.domElement );
   //controls.target.set( 0, 10, 0 );
@@ -128,6 +132,8 @@ function render() {
 
 
   snow.update(deltaT)
+
+  aquarium.update()
 
 	renderer.render(scene, camera)		
   stats.update()

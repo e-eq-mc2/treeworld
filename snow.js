@@ -19,7 +19,7 @@ export class Snow {
     this.rangeMaxZ = rangeMax
 
     this.dwell    = new Array(num).fill(0)
-    this.maxDwell = 5
+    this.maxDwell = 10
 
     this.colormap   = new Colormap('white')
     this.colormap.setBlackRate(0.0)
