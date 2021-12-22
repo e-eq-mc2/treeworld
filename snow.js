@@ -14,14 +14,14 @@ export class Snow {
     this.rangeMaxX = rangeMax
     //this.rangeMinY = rangeMin/2
     this.rangeMinY = 0
-    this.rangeMaxY = rangeMax
+    this.rangeMaxY = rangeMax * 1.5
     this.rangeMinZ = rangeMin
     this.rangeMaxZ = rangeMax
 
     this.dwell    = new Array(num).fill(0)
     this.maxDwell = 10
 
-    this.colormap   = new Colormap('white')
+    this.colormap   = new Colormap('mix')
     this.colormap.setBlackRate(0.0)
 
     const positions = new Float32Array(this.num * 3)

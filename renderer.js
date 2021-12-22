@@ -43,22 +43,23 @@ function init() {
     1000 
   );
 	camera.position.z = 50
+	camera.position.y = 20
 	scene.add(camera);
   
   scene.add( new THREE.AmbientLight(0xffffff, 1) )
 
   const axesHelper = new THREE.AxesHelper( 5 )
-  scene.add( axesHelper )
+  //scene.add( axesHelper )
 
-  forest = new Forest(500)
+  forest = new Forest(400)
   forest.eachTree((t) => {
     scene.add( t.mesh )
   })
 
-  snow= new Snow(8000, -70, 70)
+  snow= new Snow(15000, -70, 70)
   scene.add( snow.flakes )
 
-  aquarium = new Aquarium(6)
+  aquarium = new Aquarium(10)
   aquarium.eachFish( f => scene.add(f) )
 
 	container.appendChild( renderer.domElement );
@@ -152,8 +153,36 @@ document.body.addEventListener("keydown", function(e) {
   console.log(`key: ${e.key}`);
 
   switch(true) {
-    case e.key == 'p':
-     break
+    case e.key == '0':
+      snow.colormap.set('black')
+      break
+    case e.key == '1':
+      snow.colormap.set('white')
+      break
+    case e.key == '2':
+      snow.colormap.set('blue-black')
+      break
+    case e.key == '3':
+      snow.colormap.set('aqua-black')
+      break
+    case e.key == '4':
+      snow.colormap.set('green-black')
+      break
+    case e.key == '5':
+      snow.colormap.set('yellow-black')
+      break
+    case e.key == '6':
+      snow.colormap.set('red-black')
+      break
+    case e.key == '7':
+      snow.colormap.set('rose-black')
+      break
+    case e.key == '8':
+      snow.colormap.set('purple-black')
+      break
+    case e.key == 'm':
+      snow.colormap.set('mix-black')
+      break
 
     case e.key == 's':
       controls.autoRotateSpeed -= 0.05
@@ -166,4 +195,7 @@ document.body.addEventListener("keydown", function(e) {
     default:
       break
   }
+
+
+  snow.changeColor()
 });

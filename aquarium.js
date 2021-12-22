@@ -51,7 +51,7 @@ export class Aquarium {
     curve.curveType = 'centripetal';
     curve.closed = true;
 
-    const fileName = `img/santa/${(idx + 1) % 7}.png`
+    const fileName = `img/santa/${(idx ) % 5+ 1}.png`
     const material = this.plateMaterial(fileName)
 
     const sizeList = [
@@ -192,8 +192,8 @@ export class Aquarium {
     const initialPoints = Array(num)
 
     const da     = 2 * Math.PI / initialPoints.length
-    const radius = Common.randomReal(20, 25)
-    const h = 50
+    const radius = 45
+    const h = 35
     const offY   = Common.randomReal(h * 0.5, h)
 
     const sa  = Common.random(20, 25)

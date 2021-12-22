@@ -15,28 +15,31 @@ export class Tree {
     const geometry = this.plateGeometry(width, height, 3, 3)
 
     this.idx = idx
-    const fname = `img/tree/${idx % 27}.png`
+    const fname = `img/tree/${idx % 17 + 1}.png`
     console.log(fname)
     const material = this.plateMaterial(fname)
 
     this.mesh = new THREE.Mesh(geometry, material)
 
-    const range = 200
+    const range = 150
     const x = Common.randomReal(-range, range)
     const y = height
     const z = Common.randomReal(-range, range)
     this.mesh.position.x = x
     this.mesh.position.y = y
     this.mesh.position.z = z
-
+    
+    const r = Math.sqrt(x*x + y*y) /  Math.sqrt(range*range + range*range)
+    const sbase = Math.max(r, 0.3) * 5 
     const sizeList = [
       0.6, 0.6, 0.6,
       1.0, 1.0, 1.0, 1.0, 
-      3.0,
-      5.0,
+      2.0,
     ]
-    const s = Common.pickup(sizeList)
-    this.mesh.scale.set(s, s, s)
+    const srate = Common.pickup(sizeList)
+    const scale = sbase * srate
+
+    this.mesh.scale.set(scale, scale, scale)
 
   }
 
